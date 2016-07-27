@@ -1,10 +1,9 @@
 {
   "name": "twitch-embed",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "npm wrapper for twitch's video embed",
   "main": "lib/v1.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tony99nyr/twitch-embed.git"
