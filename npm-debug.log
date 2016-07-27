@@ -7,8 +7,7 @@
 3 info using node@v4.4.5
 4 info git [ 'status', '--porcelain' ]
 5 verbose stack Error: Git working directory not clean.
-5 verbose stack D LICENSE
-5 verbose stack M README.md
+5 verbose stack D npm-debug.log
 5 verbose stack     at C:\Users\tony.rossi\AppData\Roaming\npm\node_modules\npm\lib\version.js:246:19
 5 verbose stack     at ChildProcess.exithandler (child_process.js:204:7)
 5 verbose stack     at emitTwo (events.js:87:13)
@@ -24,8 +23,7 @@
 9 error node v4.4.5
 10 error npm  v3.9.5
 11 error Git working directory not clean.
-11 error D LICENSE
-11 error M README.md
+11 error D npm-debug.log
 12 error If you need help, you may report this error at:
 12 error     <https://github.com/npm/npm/issues>
 13 verbose exit [ 1, true ]
