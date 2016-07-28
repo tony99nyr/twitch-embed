@@ -2,7 +2,7 @@
 Make Twitch's interactive embed video script available on npm.  I needed it available on a project and figured other's might too.  
 
 ## Implementation ##
-This isn't the most ideal implementation.  The script still pollutes the `window` and the functions/objects are NOT able to be imported. i.e. `import { Player } from 'twitch-embed`.  To enable this Twitch would have to provide its source and make a few modifications.
+This isn't the most ideal implementation.  The script still pollutes the `window` and the functions/objects are NOT able to be imported. i.e. `import { Player } from 'twitch-embed'`.  To enable this Twitch would have to provide its source and make a few modifications.
 
 lib/v1.js is literally just http://player.twitch.tv/js/embed/v1.js
 
