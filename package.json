@@ -1,6 +1,6 @@
 {
   "name": "twitch-embed",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "npm wrapper for twitch's video embed",
   "main": "lib/v1.js",
   "scripts": {},
