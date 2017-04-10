@@ -1,5 +1,5 @@
 # twitch-embed
-Make Twitch's interactive embed video script available on npm.  I needed it available on a project and figured other's might too.  
+Make Twitch's interactive embed video script available on npm.  I needed it available on a project and figured other's might too.
 
 ## Implementation ##
 This isn't the most ideal implementation.  The script still pollutes the `window` and the functions/objects are NOT able to be imported. i.e. `import { Player } from 'twitch-embed'`.  To enable this Twitch would have to provide its source and make a few modifications.
@@ -14,6 +14,16 @@ I did have to make a change to the source.  I pretty printed it, and hard coded 
     npm i --save twitch-embed
     import 'twitch-embed';
 
+## eslint ##
+You may need to disable the eslint error for global variable usage if you are referencing the Twitch variable without window. (Twitch vs window.Twitch)
+
+	//.eslintrc
+	{
+      "globals": {
+        "Twitch": false
+      }
+	}
+
 
 See Twitch's Video Embed page for more information.
 [https://github.com/justintv/Twitch-API/blob/master/embed-video.md](https://github.com/justintv/Twitch-API/blob/master/embed-video.md "Embedding Twitch Live Streams & Videos")
@@ -23,7 +33,7 @@ See Twitch's Video Embed page for more information.
 	import React from 'react';
 	import 'twitch-embed';
 
-	class TwitchVideoEmbed extends React.Component {
+	export default class TwitchVideoEmbed extends React.Component {
 		constructor(props) {
 			super(props);
 			this.player = null;
@@ -31,6 +41,12 @@ See Twitch's Video Embed page for more information.
 				id: null
 			};
 		}
+
+		static propTypes = {
+			channel: React.PropTypes.string,
+			video: React.PropTypes.string,
+			play: React.PropTypes.bool
+		};
 
 		componentWillMount() {
 			this.setId();
@@ -47,7 +63,7 @@ See Twitch's Video Embed page for more information.
 		componentWillReceiveProps(nextProps) {
 			this.setId();
 			this.setPlayer();
-			
+
 			//can check for props and call player functions here
 		}
 
@@ -76,7 +92,9 @@ See Twitch's Video Embed page for more information.
 				} else {
 					options.video = this.props.video;
 				}
-				this.player = new Twitch.Player(this.state.id, options);
+				if (typeof window !== 'undefined' && window.Twitch) {
+					this.player = new window.Twitch.Player(this.state.id, options);
+				}
 			}
 		}
 
@@ -86,12 +104,4 @@ See Twitch's Video Embed page for more information.
 			);
 		}
 	}
-
-	TwitchVideoEmbed.propTypes = {
-		channel: React.PropTypes.string,
-		video: React.PropTypes.string,
-		play: React.PropTypes.bool
-	};
-
-	export default TwitchVideoEmbed;
 
